@@ -66,9 +66,6 @@ left to right direction
 
 ##  构件图
 
-## 泳道图
-
-## 时序图
 
 ## E-R 图
 
