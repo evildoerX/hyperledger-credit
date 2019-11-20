@@ -56,6 +56,7 @@ module.exports = ctx => ({
     nav: require("./nav"),
     sidebar: {
       "/guide/": getGuideSidebar("指南", "深入"),
+      "/credit/": getSidebar(),
     }
   },
   plugins: [
@@ -111,6 +112,18 @@ function getGuideSidebar() {
       sidebarDepth: 2,
       children: [
         'MORE',
+      ]
+    }
+  ];
+}
+
+function getSidebar(){
+  return [
+    {
+      collapsable: false,
+      sidebarDepth: 2,
+      children: [
+        "",
       ]
     }
   ];

@@ -8,15 +8,6 @@
 
 ### 角色说明
 
-1. 政府机构管理员
-   1. 政府机构
-   2. 政府子机构
-2. 运维管理员
-3. 经纪公司管理员
-4. 经纪公司 HR
-5. 经纪人
-6. 普通用户
-
 ### 顶层用例图
 
 @startuml
@@ -66,6 +57,14 @@ left to right direction
 
 ##  构件图
 
+:::tip
+
+```
+
+```
+
+:::
+
 ## E-R 图
 
 ## 数据表设计
@@ -101,6 +100,25 @@ left to right direction
 | channel       | int(11) [0]                   | channelID |
 | created_at    | timestamp [CURRENT_TIMESTAMP] |
 | updated_at    | timestamp [CURRENT_TIMESTAMP] |
+
+### 申诉 agent_violation_appeal
+
+| 列                | 类型                          | 注释                                                   |
+| ----------------- | ----------------------------- | ------------------------------------------------------ |
+| id                | int(11) 自动增量              |
+| appkey            | varchar(50) []                | appkey                                                 |
+| channel           | int(11) [0]                   | channelID                                              |
+| accountID         | varchar(64) []                | agent 的 accountID                                     |
+| name              | varchar(50) []                | 经纪人姓名                                             |
+| certificateNumber | varchar(60) []                | 身份证号（加密）                                       |
+| status            | tinyint(4) [1]                | 审核状态 1：待审核 2：通过并撤销 3：通过并修改 4：拒绝 |
+| currentViolation  | text                          | 新的违规记录，修改违规记录时更新该字段                 |
+| material          | text                          | 申诉材料 url                                           |
+| excelUrl          | text                          | 附件 excel 的 URL                                      |
+| reason            | varchar(255) []               | 申诉理由                                               |
+| args              | text                          | 扩展参数                                               |
+| created_at        | timestamp [CURRENT_TIMESTAMP] |
+| updated_at        | timestamp [CURRENT_TIMESTAMP] |
 
 ### 经纪公司投诉 company_complaint
 
@@ -219,20 +237,19 @@ left to right direction
 
 ### 经纪人上岗证信息表 license_manage
 
-| 列                | 类型                          | 注释                                              |
-| ----------------- | ----------------------------- | ------------------------------------------------- |
-| id                | int(11) 自动增量              |
-| accountID         | varchar(64)                   | accountID                                         |
-| appkey            | varchar(50) []                | appkey                                            |
-| channel           | int(11) [0]                   | channelID                                         |
-| licenseUrl        | varchar(255)                  | 上岗证图片 URL                                    |
-| status            | tinyint(4) [2]                | 1:正常，2：待缴费，3：失效, 4：正在下载 5：已下载 |
-| version           | tinyint(4) [1]                |
-| effectDate        | datetime                      | 生效日期                                          |
-| expireDate        | datetime                      | 失效日期                                          |
-| certificateNumber | varchar(80)                   | 身份证号（加密）                                  |
-| created_at        | timestamp [CURRENT_TIMESTAMP] |
-| updated_at        | timestamp [CURRENT_TIMESTAMP] |
+| 列         | 类型                          | 注释                                              |
+| ---------- | ----------------------------- | ------------------------------------------------- |
+| id         | int(11) 自动增量              |
+| accountID  | varchar(64)                   | accountID                                         |
+| appkey     | varchar(50) []                | appkey                                            |
+| channel    | int(11) [0]                   | channelID                                         |
+| licenseUrl | varchar(255)                  | 上岗证图片 URL                                    |
+| status     | tinyint(4) [2]                | 1:正常，2：待缴费，3：失效, 4：正在下载 5：已下载 |
+| version    | tinyint(4) [1]                |
+| effectDate | datetime                      | 生效日期                                          |
+| expireDate | datetime                      | 失效日期                                          |
+| created_at | timestamp [CURRENT_TIMESTAMP] |
+| updated_at | timestamp [CURRENT_TIMESTAMP] |
 
 ### 下载上岗证记录 download_license_log
 
