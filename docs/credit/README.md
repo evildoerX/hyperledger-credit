@@ -9,7 +9,6 @@
 ### 角色说明
 
 ### 顶层用例图
-
 @startuml
 left to right direction
 用户 --> (业务管理员)
@@ -97,7 +96,10 @@ left to right direction
 
 ##  构件图
 
+## 时序图
+### 用户投诉
 
+### 上岗证申请
 ## E-R 图
 ![](./imgs/e-r.png)
 ## 数据表设计
