@@ -65,6 +65,7 @@ left to right direction
 (消息管理) ..> (获取消息列表): <<include>>
 (消息管理) ..> (查看消息详情): <<include>>
 (消息管理) ..> (添加消息): <<include>>
+(消息管理) ..> (下载消息附件): <<include>>
 @enduml
 
 ### 详细用例图
