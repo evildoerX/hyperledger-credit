@@ -1,7 +1,7 @@
 module.exports = [
   {
-    text: '如何使用',
-    link: '/guide/',
+    text: '房产信用',
+    link: '/credit/',
   },
   // {
   //   text: 'W3C其他资料',
