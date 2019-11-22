@@ -404,6 +404,8 @@ left to right direction
 ![](./imgs/sjl1.png)
 ### 上岗证申请
 ![](./imgs/sjl2.png)
+## 类图
+![](./imgs/lt.png)
 ## E-R 图
 ![](./imgs/e-r.png)
 ## 数据表设计
