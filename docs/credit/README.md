@@ -402,7 +402,7 @@ left to right direction
 ## 数据流图
 ### 用户投诉，违规和黑名单
 ![](./imgs/sjl1.png)
-### 上岗证申请
+### 上岗证
 ![](./imgs/sjl2.png)
 ## 类图
 ![](./imgs/lt.png)
