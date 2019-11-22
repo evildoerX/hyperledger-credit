@@ -1,9 +1,13 @@
 # 房产征信
 
 ## 服务引用图
+
 ![](./imgs/service.png)
+
 ## 用例图
+
 ### 顶层用例图
+
 @startuml
 left to right direction
 用户 --> (业务管理员)
@@ -108,13 +112,16 @@ left to right direction
 (扫码查看上岗证详情) ..> (查看经纪人违规记录): <<include>>
 (扫码查看上岗证详情) ..> (查看经纪人服务评价): <<include>>
 (扫码查看上岗证详情) ..> (查看经纪人所属信息): <<include>>
-(消费者) ..>  (投诉经纪人): <<include>>
-(消费者) ..>  (评价经纪人): <<include>>
+(消费者) ..> (投诉经纪人): <<include>>
+(消费者) ..> (评价经纪人): <<include>>
 @enduml
 
 ### 角色用例图
+
 #### 角色说明
+
 1. 经纪公司（链家，贝壳）
+
    1. 老板: 经纪公司的老板主要看相关行业报表
    2. HR：主要处理业务包含员工管理，投诉，违规管理，上岗证申请等
    3. 法务，对于线下已存在黑名单的经纪人 ，法务需要鉴定真实性并提交到系统
@@ -131,6 +138,7 @@ left to right direction
    2. 区政府级：整个行业的报表数据，处理投诉，经纪人查询
 
 #### 协会管理员
+
 @startuml
 left to right direction
 协会管理员 --> (经纪公司管理)
@@ -200,7 +208,9 @@ left to right direction
 (数据报告) ..> (信访投诉分析): <<include>>
 (数据报告) ..> (行业成交分析): <<include>>
 @enduml
+
 #### 协会自律委员会
+
 @startuml
 left to right direction
 协会自律委员会 --> (严重违规记录)
@@ -212,7 +222,9 @@ left to right direction
 (审核严重违规记录) ..> (修改违规记录): <<include>>
 (严重违规记录) ..> (添加严重违规记录): <<include>>
 @enduml
+
 #### 市政府
+
 @startuml
 left to right direction
 市政府 --> (数据报告)
@@ -224,7 +236,9 @@ left to right direction
 (数据报告) ..> (信访投诉分析): <<include>>
 (数据报告) ..> (行业成交分析): <<include>>
 @enduml
+
 #### 区政府
+
 @startuml
 left to right direction
 区政府 --> (数据报告)
@@ -245,7 +259,9 @@ left to right direction
 (经纪人信息) ..> (浏览经纪人列表): <<include>>
 (经纪人信息) ..> (查询经纪人详情): <<include>>
 @enduml
+
 #### 经纪公司管理员
+
 @startuml
 left to right direction
 经纪公司管理员 --> (诚信报告)
@@ -262,7 +278,9 @@ left to right direction
 经纪公司管理员 --> (信息公告)
 (信息公告) ..> (浏览信息公告): <<include>>
 @enduml
-#### 经纪公司HR
+
+#### 经纪公司 HR
+
 @startuml
 left to right direction
 经纪公司HR --> (门店管理)
@@ -307,7 +325,9 @@ left to right direction
 (信息公告) ..> (浏览信息公告列表): <<include>>
 (信息公告) ..> (查看信息公告详情): <<include>>
 @enduml
+
 #### 经纪公司法务
+
 @startuml
 left to right direction
 经纪公司法务 --> (黑名单)
@@ -315,7 +335,9 @@ left to right direction
 (黑名单) ..> (查看黑名单列表): <<include>>
 (黑名单) ..> (上报黑名单到协会): <<include>>
 @enduml
+
 #### 门店管理员
+
 @startuml
 left to right direction
 门店管理员 --> (诚信报告)
@@ -332,7 +354,9 @@ left to right direction
 门店管理员 --> (信息公告)
 (信息公告) ..> (浏览信息公告): <<include>>
 @enduml
-#### 门店HR
+
+#### 门店 HR
+
 @startuml
 left to right direction
 门店HR --> (员工管理)
@@ -363,7 +387,9 @@ left to right direction
 (信息公告) ..> (浏览信息公告列表): <<include>>
 (信息公告) ..> (查看信息公告详情): <<include>>
 @enduml
+
 #### 业务员
+
 @startuml
 left to right direction
 业务员 --> (上岗证)
@@ -384,6 +410,7 @@ left to right direction
 @enduml
 
 #### 消费者
+
 @startuml
 left to right direction
 消费者 --> (上岗证)
@@ -395,18 +422,103 @@ left to right direction
 消费者 --> (投诉经纪人)
 消费者 --> (评价经纪人)
 @enduml
+
 ### 详细用例图
 
 ##  构件图
+
 ![](./imgs/gjt.png)
+
 ## 数据流图
+
 ### 用户投诉，违规和黑名单
+
 ![](./imgs/sjl1.png)
+
 ### 上岗证
+
 ![](./imgs/sjl2.png)
+
 ## 类图
+
 ![](./imgs/lt.png)
+
 ## E-R 图
+
 ![](./imgs/e-r.png)
+
 ## 数据表设计
+
 ## 接口设计
+
+### 经纪人违规表 agent_violation
+
+| 列                | 类型                          | 注释                                                                             |
+| ----------------- | ----------------------------- | -------------------------------------------------------------------------------- |
+| id                | int(11) 自动增量              |
+| appkey            | varchar(50) []                | appkey                                                                           |
+| channel           | int(11) [0]                   | channelID                                                                        |
+| agentAccountID    | varchar(64)                   | 经纪人 id                                                                        |
+| certificateNumber | varchar(50)                   | 身份证号                                                                         |
+| name              | varchar(50)                   | 用户名                                                                           |
+| status            | tinyint(4) [2]                | 记录状态 1：待审核 2：审核通过 3：审核不通过添加其他违规 4：审核不通过撤销违规   |
+| from              | tinyint(4) [1]                | 1：公司；2：区交易中心；3：区房管局；4：公安；5：工商（默认公司）；6：消费者投诉 |
+| orgID             | varchar(64)                   | 经纪公司 ID                                                                      |
+| txID              | varchar(100)                  | 链上插入成功返回的交易编号（调用链接口返回的参数                                 |
+| violationDate     | datetime                      | 违规日期                                                                         |
+| violationType     | int(11)                       | 违规类型，关联违规类型表的 id                                                    |
+| violationReason   | varchar(200)                  | 违规具体内容                                                                     |
+| created_at        | timestamp [CURRENT_TIMESTAMP] |
+| updated_at        | timestamp [CURRENT_TIMESTAMP] |
+
+### 违规类型表 violation_type
+
+| 列            | 类型                          | 注释      |
+| ------------- | ----------------------------- | --------- |
+| id            | int(11) 自动增量              |
+| violationName | varchar(50)                   | 失信名称  |
+| description   | text                          | 违规描述  |
+| appkey        | varchar(50) []                | appkey    |
+| channel       | int(11) [0]                   | channelID |
+| created_at    | timestamp [CURRENT_TIMESTAMP] |
+| updated_at    | timestamp [CURRENT_TIMESTAMP] |
+
+### 申诉 agent_violation_appeal
+
+| 列                | 类型                          | 注释                                                   |
+| ----------------- | ----------------------------- | ------------------------------------------------------ |
+| id                | int(11) 自动增量              |
+| appkey            | varchar(50) []                | appkey                                                 |
+| channel           | int(11) [0]                   | channelID                                              |
+| accountID         | varchar(64) []                | agent 的 accountID                                     |
+| name              | varchar(50) []                | 经纪人姓名                                             |
+| certificateNumber | varchar(60) []                | 身份证号（加密）                                       |
+| status            | tinyint(4) [1]                | 审核状态 1：待审核 2：通过并撤销 3：通过并修改 4：拒绝 |
+| currentViolation  | text                          | 新的违规记录，修改违规记录时更新该字段                 |
+| material          | text                          | 申诉材料 url                                           |
+| excelUrl          | text                          | 附件 excel 的 URL                                      |
+| reason            | varchar(255) []               | 申诉理由                                               |
+| args              | text                          | 扩展参数                                               |
+| created_at        | timestamp [CURRENT_TIMESTAMP] |
+| updated_at        | timestamp [CURRENT_TIMESTAMP] |
+
+### 投诉表 complaint
+
+| 列               | 类型                          | 注释                                      |
+| ---------------- | ----------------------------- | ----------------------------------------- |
+| id               | int(11) 自动增量              |
+| appkey           | varchar(50) []                | appkey                                    |
+| channel          | varchar(50) []                | channel                                   |
+| type             | varchar(50) []                | channel                                   |
+| complaintChannel | smallint(6) [0]               | 投诉公司的 channel                        |
+| complaintTel     | varchar(20) []                | 投诉公司的联系电话                        |
+| orgName          | varchar(50) []                | 投诉方机构名称                            |
+| channel          | smallint(6) [0]               | 被投诉公司的 channel                      |
+| companyName      | varchar(50) []                | 被投诉非平台会员公司名，与 channel 二选一 |
+| tel              | varchar(20) []                | 被投诉公司的联系电话                      |
+| material         | text                          | 处理材料 URL                              |
+| status           | tinyint(4) [1]                | 1:待处理 2:处理中 3:已处理                |
+| processResult    | text                          | 处理意见                                  |
+| reason           | varchar(255) []               | 投诉理由                                  |
+| created_at       | timestamp [CURRENT_TIMESTAMP] |
+| updated_at       | timestamp [CURRENT_TIMESTAMP] |
