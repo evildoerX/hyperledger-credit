@@ -398,7 +398,7 @@ left to right direction
 ### 详细用例图
 
 ##  构件图
-
+![](./imgs/gjt.png)
 ## 数据流图
 ### 用户投诉，违规和黑名单
 ![](./imgs/sjl1.png)
