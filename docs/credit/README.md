@@ -401,19 +401,9 @@ left to right direction
 
 ## 数据流图
 ### 用户投诉，违规和黑名单
-
+![](./imgs/sjl1.png)
 ### 上岗证申请
-@startuml
-actor 用户
-participant 钱包前端
-participant 钱包后端
-
-用户 -> 钱包前端: 输入密码进行登录
-钱包前端 -> 钱包后端: 请求验证登录
-钱包后端 -> 钱包后端: 验证accountid和密码
-钱包后端 --> 钱包前端: 验证通过
-钱包前端 -> 用户: 登录成功，进入钱包首页
-@enduml
+![](./imgs/sjl2.png)
 ## E-R 图
 ![](./imgs/e-r.png)
 ## 数据表设计
