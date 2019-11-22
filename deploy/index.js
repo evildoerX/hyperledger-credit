@@ -43,7 +43,7 @@ cp("-rf", "dist/", versionDir);
 // // if (env === "preprod") {
   Log.info(`开始上传新的版本${package.version},请耐心等候上传成功.....`);
   exec(
-    `scp -r ${versionDir} ${sshAddress}:/opt/ci123/www/html/webroot/${package.version}`
+    `scp -r ${versionDir} ${sshAddress}:/opt/ci123/www/html/webroot/hyperledger-credit/${package.version}`
   );
 // // }
 
