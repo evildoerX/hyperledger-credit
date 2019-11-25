@@ -523,25 +523,6 @@ left to right direction
 | created_at    | timestamp [CURRENT_TIMESTAMP] |
 | updated_at    | timestamp [CURRENT_TIMESTAMP] |
 
-### 申诉 agent_violation_appeal
-
-| 列                | 类型                          | 注释                                                   |
-| ----------------- | ----------------------------- | ------------------------------------------------------ |
-| id                | int(11) 自动增量              |
-| appkey            | varchar(50) []                | appkey                                                 |
-| channel           | int(11) [0]                   | channelID                                              |
-| accountID         | varchar(64) []                | agent 的 accountID                                     |
-| name              | varchar(50) []                | 经纪人姓名                                             |
-| certificateNumber | varchar(60) []                | 身份证号（加密）                                       |
-| status            | tinyint(4) [1]                | 审核状态 1：待审核 2：通过并撤销 3：通过并修改 4：拒绝 |
-| currentViolation  | text                          | 新的违规记录，修改违规记录时更新该字段                 |
-| material          | text                          | 申诉材料 url                                           |
-| excelUrl          | text                          | 附件 excel 的 URL                                      |
-| reason            | varchar(255) []               | 申诉理由                                               |
-| args              | text                          | 扩展参数                                               |
-| created_at        | timestamp [CURRENT_TIMESTAMP] |
-| updated_at        | timestamp [CURRENT_TIMESTAMP] |
-
 ### 投诉表 complaint
 
 | 列                   | 类型             | 注释                                                                                                                                               |
@@ -565,6 +546,26 @@ left to right direction
 | status               | tinyint(4) [1]   | 投诉处理状态 1：未处理 2：受理 3：驳回 4：admin 推给 HR（待转发） 5：HR 推还给 admin（处理中）6：HR 处理中 7：待审核，8：已处理 流程 1→4→6→5→2 / 3 |
 | processPics          | text             | 管理员 处理图片                                                                                                                                    |
 | processResult        | text             | 管理员 处理描述                                                                                                                                    |
+
+### 申诉 violation_appeal
+
+| 列                | 类型                          | 注释                                                   |
+| ----------------- | ----------------------------- | ------------------------------------------------------ |
+| id                | int(11) 自动增量              |
+| appkey            | varchar(50) []                | appkey                                                 |
+| channel           | int(11) [0]                   | channelID                                              |
+| type              | tinyint(4) [1]                | 申诉类型：1 经纪人申诉，2 经纪公司申诉                 |
+| appealId          | varchar(64) []                | 申诉人或申诉公司 id                                    |
+| appealName        | varchar(50) []                | 申诉人或申诉公司 名称                                  |
+| certificateNumber | varchar(60) []                | 身份证号（加密） 或者机构代码                          |
+| status            | tinyint(4) [1]                | 审核状态 1：待审核 2：通过并撤销 3：通过并修改 4：拒绝 |
+| currentViolation  | text                          | 新的违规记录，修改违规记录时更新该字段                 |
+| material          | text                          | 申诉材料 url                                           |
+| excelUrl          | text                          | 附件 excel 的 URL                                      |
+| reason            | varchar(255) []               | 申诉理由                                               |
+| args              | text                          | 扩展参数                                               |
+| created_at        | timestamp [CURRENT_TIMESTAMP] |
+| updated_at        | timestamp [CURRENT_TIMESTAMP] |
 
 
 ### 经纪人从业经历 agent_job_ext
