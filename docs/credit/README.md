@@ -546,21 +546,24 @@ left to right direction
 
 ### 投诉表 complaint
 
-| 列               | 类型                          | 注释                                      |
-| ---------------- | ----------------------------- | ----------------------------------------- |
-| id               | int(11) 自动增量              |
-| appkey           | varchar(50) []                | appkey                                    |
-| channel          | varchar(50) []                | channel                                   |
-| type             | varchar(50) []                | 投诉类型：1:用户对经纪人投诉 ,2:经纪公司对经纪公司投诉, 3:用户对经纪人信访，4：用户对经纪公司信访|
-| complaintChannel | smallint(6) [0]               | 投诉公司的 channel                        |
-| complaintTel     | varchar(20) []                | 投诉公司的联系电话                        |
-| orgName          | varchar(50) []                | 投诉方机构名称                            |
-| channel          | smallint(6) [0]               | 被投诉公司的 channel                      |
-| companyName      | varchar(50) []                | 被投诉非平台会员公司名，与 channel 二选一 |
-| tel              | varchar(20) []                | 被投诉公司的联系电话                      |
-| material         | text                          | 处理材料 URL                              |
-| status           | tinyint(4) [1]                | 1:待处理 2:处理中 3:已处理                |
-| processResult    | text                          | 处理意见                                  |
-| reason           | varchar(255) []               | 投诉理由                                  |
-| created_at       | timestamp [CURRENT_TIMESTAMP] |
-| updated_at       | timestamp [CURRENT_TIMESTAMP] |
+| 列                   | 类型             | 注释                                                                                                                                               |
+| -------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                   | int(11) 自动增量 |                                                                                                                                                    |
+| appkey               | varchar(50) []   |                                                                                                                                                    |
+| channel              | int(11) [0]      |                                                                                                                                                    |
+| type                 | varchar(50) []   | 投诉类型：1:用户对经纪人投诉 ,2:经纪公司对经纪公司投诉, 3:用户对经纪人信访，4：用户对经纪公司信访                                                  |
+| complainantAccountID | varchar(50) []   | 投诉人 accountID                                                                                                                                   |
+| complainantName      | varchar(50) []   | 投诉人名称                                                                                                                                         |
+| complainantsubOrgKey | varchar(50) []   | 投诉人所属机构                                                                                                                                     |
+| complainantTime      | timestamp        | 投诉时间                                                                                                                                           |
+| complainantDesc      | varchar(50) []   | 投诉内容                                                                                                                                           |
+| complainantMaterial  | text             | 投诉附件                                                                                                                                           |
+| complainantIp        | varchar(50) []   | 投诉人 ip                                                                                                                                          |
+| complainantTel       | varchar(50) []   | 投诉人联系方式                                                                                                                                     |
+| respondentAccountid  | varchar(50) []   | 被投诉人 accountid                                                                                                                                 |
+| respondentSubOrgKey  | varchar(50) []   | 被投诉人所属机构                                                                                                                                   |
+| respondentOrgName    | varchar(50) []   | 被投诉人所属机构名称(当投诉的机构不在协会注册时使用 )                                                                                              |
+| respondentTel        | varchar(50) []   | 被投诉人联系方式                                                                                                                                   |
+| status               | tinyint(4) [1]   | 投诉处理状态 1：未处理 2：受理 3：驳回 4：admin 推给 HR（待转发） 5：HR 推还给 admin（处理中）6：HR 处理中 7：待审核，8：已处理 流程 1→4→6→5→2 / 3 |
+| processPics          | text             | 管理员 处理图片                                                                                                                                    |
+| processResult        | text             | 管理员 处理描述                                                                                                                                    |
