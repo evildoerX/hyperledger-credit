@@ -491,8 +491,6 @@ left to right direction
 
 ## 数据表设计
 
-## 接口设计
-
 ### 经纪人违规表 agent_violation
 
 | 列                | 类型                          | 注释                                                                             |
@@ -567,3 +565,180 @@ left to right direction
 | status               | tinyint(4) [1]   | 投诉处理状态 1：未处理 2：受理 3：驳回 4：admin 推给 HR（待转发） 5：HR 推还给 admin（处理中）6：HR 处理中 7：待审核，8：已处理 流程 1→4→6→5→2 / 3 |
 | processPics          | text             | 管理员 处理图片                                                                                                                                    |
 | processResult        | text             | 管理员 处理描述                                                                                                                                    |
+
+
+### 经纪人从业经历 agent_job_ext
+
+| 列              | 类型                          | 注释                                             |
+| --------------- | ----------------------------- | ------------------------------------------------ |
+| id              | int(11) 自动增量              |
+| appkey          | varchar(50) []                | appkey                                           |
+| channel         | int(11) [0]                   | channelID                                        |
+| agentAccountID  | varchar(255)                  |
+| orgID           | varchar(64)                   | 经纪公司 ID                                      |
+| orgName         | varchar(64)                   | 经纪公司 ID                                      |
+| txID            | varchar(100)                  | 链上插入成功返回的交易编号（调用链接口返回的参数 |
+| entryJob        | varchar(100)                  | 入职职位                                         |
+| entryDate       | datetime                      | 入职职位                                         |
+| departureDate   | datetime                      | 离职职位                                         |
+| jobArea         | varchar(100)                  | 主要工作区域                                     |
+| departureJob    | varchar(100)                  | 离职时职位                                       |
+| departureReason | varchar(300)                  | 离职时职位                                       |
+| created_at      | timestamp [CURRENT_TIMESTAMP] |
+| updated_at      | timestamp [CURRENT_TIMESTAMP] |
+
+### 消费者对经纪人的服务评价 agent_comment
+
+| 列         | 类型                          | 注释                  |
+| ---------- | ----------------------------- | --------------------- |
+| id         | int(11) 自动增量              |
+| appkey     | varchar(50) []                | appkey                |
+| channel    | int(11) [0]                   | channelID             |
+| accountID  | varchar(64) []                | agent 的 accountID    |
+| customID   | varchar(64) []                | 添加评价的消费者的 ID |
+| score1     | tinyint(4) [0]                | 评分 1 (1-5)          |
+| score2     | tinyint(4) [0]                | 评分 2 (1-5)          |
+| score3     | tinyint(4) [0]                | 评分 3 (1-5)          |
+| score4     | tinyint(4) [0]                | 评分 4 (1-5)          |
+| score5     | tinyint(4) [0]                | 评分 5 (1-5)          |
+| ipAddress  | varchar(20) []                | 客户端 ip             |
+| created_at | timestamp [CURRENT_TIMESTAMP] |
+| updated_at | timestamp [CURRENT_TIMESTAMP] |
+
+### 经纪人上岗证信息表 license_manage
+
+| 列         | 类型                          | 注释                                              |
+| ---------- | ----------------------------- | ------------------------------------------------- |
+| id         | int(11) 自动增量              |
+| accountID  | varchar(64)                   | accountID                                         |
+| appkey     | varchar(50) []                | appkey                                            |
+| channel    | int(11) [0]                   | channelID                                         |
+| licenseUrl | varchar(255)                  | 上岗证图片 URL                                    |
+| status     | tinyint(4) [2]                | 1:正常，2：待缴费，3：失效, 4：正在下载 5：已下载 |
+| version    | tinyint(4) [1]                |
+| effectDate | datetime                      | 生效日期                                          |
+| expireDate | datetime                      | 失效日期                                          |
+| created_at | timestamp [CURRENT_TIMESTAMP] |
+| updated_at | timestamp [CURRENT_TIMESTAMP] |
+
+
+### 下载上岗证记录 download_license_log
+
+| 列         | 类型                          | 注释                                       |
+| ---------- | ----------------------------- | ------------------------------------------ |
+| id         | int(11) 自动增量              |
+| appkey     | varchar(50) []                | appkey                                     |
+| channel    | int(11) [0]                   | channelID                                  |
+| zipUrl     | varchar(100) []               | 上岗证图片 zipURL                          |
+| status     | tinyint(4)                    | 状态 1：正在下载 2：下载完成 3：用户已下载 |
+| created_at | timestamp [CURRENT_TIMESTAMP] |
+| updated_at | timestamp [CURRENT_TIMESTAMP] |
+
+### 上岗证申请记录表 apply_license
+
+| 列                | 类型                          | 注释                                                                                                        |
+| ----------------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| id                | int(11) 自动增量              |
+| accountID         | varchar(64)                   | accountID                                                                                                   |
+| appkey            | varchar(50) []                | appkey                                                                                                      |
+| channel           | int(11) [0]                   | channelID                                                                                                   |
+| orgName           | varchar(255)                  | 机构名                                                                                                      |
+| name              | varchar(50) []                | 申请人姓名                                                                                                  |
+| certificateNumber | varchar(80)                   | 申请人身份证号（加密）                                                                                      |
+| phone             | varchar(50)                   | 申请人手机号（加密）                                                                                        |
+| entryJob          | varchar(25)                   | 入职职位                                                                                                    |
+| userAccountID     | varchar(64)                   | 操作者的 accountID                                                                                          |
+| hrName            | varchar(50) []                | HR 姓名                                                                                                     |
+| taskID            | int(11)                       | 审核通过后端渲染图片任务 ID，对应 timed_job_batch 里面的 ID                                                 |
+| status            | tinyint(4) [0]                | 申请状态，0：待申请 1：待审核 2：审核通过正在生成信息卡 3：审核通过（待缴费） 4：被拒绝 5：已缴费           |
+| effectDate        | datetime                      | 生效日期                                                                                                    |
+| isAccord          | tinyint(4)                    | 是否符合资质，1：符合，2：不符合（信息不完整），3：不符合（在黑名单）,4：重复申请，-1：不符合（用户不存在） |
+| created_at        | timestamp [CURRENT_TIMESTAMP] |
+| updated_at        | timestamp [CURRENT_TIMESTAMP] |
+| args              | text                          | 扩展信息                                                                                                    |
+
+### 经纪人职业资格证 agent_credential
+
+| 列                | 类型                          | 注释                                   |
+| ----------------- | ----------------------------- | -------------------------------------- |
+| id                | int(11) 自动增量              |
+| appkey            | varchar(50) []                | appkey                                 |
+| channel           | int(11) [0]                   | channelID                              |
+| accountID         | varchar(64) []                | agent 的 accountID                     |
+| name              | varchar(50) []                | 经纪人姓名                             |
+| type              | tinyint(4) [1]                | 1：协理证；2：全国证                   |
+| certificateNumber | varchar(60) []                | 身份证号（加密）                       |
+| credentialNum     | varchar(60) []                | 证书编号                               |
+| status            | tinyint(4) [1]                | 证书状态 1：待审核 2：已通过 3：未通过 |
+| material          | text                          | 资格证书图片 url                       |
+| created_at        | timestamp [CURRENT_TIMESTAMP] |
+| updated_at        | timestamp [CURRENT_TIMESTAMP] |
+
+### 链码环境变量 chain_env
+
+| 列            | 类型                          | 注释      |
+| ------------- | ----------------------------- | --------- |
+| id            | int(11) 自动增量              |
+| appkey        | varchar(50) []                | appkey    |
+| channel       | int(11) [0]                   | channelID |
+| channelName   | varchar(100)                  |
+| chaincodeName | varchar(100)                  |
+| invokePeers   | varchar(300)                  |
+| queryPeers    | varchar(300)                  |
+| created_at    | timestamp [CURRENT_TIMESTAMP] |
+| updated_at    | timestamp [CURRENT_TIMESTAMP] |
+
+### 链机构 chain_org
+
+| 列           | 类型                          | 注释         |
+| ------------ | ----------------------------- | ------------ |
+| id           | int(11) 自动增量              |
+| chainOrgName | varchar(50)                   | 链上机构名称 |
+| orgDomain    | varchar(255)                  | 链上机构域名 |
+| description  | varchar(255)                  | 描述         |
+| sdkAddress   | varchar(255)                  | SDK 访问地址 |
+| appkey       | varchar(50) []                | appkey       |
+| channel      | int(11) [0]                   | channelID    |
+| created_at   | timestamp [CURRENT_TIMESTAMP] |
+| updated_at   | timestamp [CURRENT_TIMESTAMP] |
+
+### 信息公告表 issue
+
+| 列         | 类型                          | 注释                     |
+| ---------- | ----------------------------- | ------------------------ |
+| id         | int(11) 自动增量              |
+| appkey     | varchar(50) []                | appkey                   |
+| channel    | smallint(6) [0]               | channelID                |
+| accountID  | varchar(64) []                | 发布者的 accountID       |
+| name       | varchar(50) []                | 发布者姓名               |
+| title      | varchar(120) [无标题]         | 标题                     |
+| status     | tinyint(4) [1]                | 信息状态 1：发布 2：丢弃 |
+| issueUrl   | varchar(255) []               | 信息 pdf 上传 url        |
+| excelUrl   | text                          | 附件 excel 上传 url      |
+| created_at | timestamp [CURRENT_TIMESTAMP] |
+| updated_at | timestamp [CURRENT_TIMESTAMP] |
+
+### 信息公告角色可见配置 issue_authority
+
+| 列         | 类型                          | 注释                                   |
+| ---------- | ----------------------------- | -------------------------------------- |
+| id         | int(11) 自动增量              |
+| appkey     | varchar(50) []                | appkey                                 |
+| channel    | smallint(6) [0]               | channelID                              |
+| issueID    | smallint(6) [0]               | issue 表的 id                          |
+| roleID     | tinyint(4) [1]                | 1: admin 2:HR 3:gov 4:comAdmin 5:agent |
+| created_at | timestamp [CURRENT_TIMESTAMP] |
+| updated_at | timestamp [CURRENT_TIMESTAMP] |
+
+### 机构扩展表 channel_ext
+
+| 列         | 类型                          | 注释      |
+| ---------- | ----------------------------- | --------- |
+| id         | int(11) 自动增量              |
+| appkey     | varchar(50) []                | appkey    |
+| channel    | int(11) [0]                   | channelID |
+| chainOrgID | int(11)                       | 机构 ID   |
+| created_at | timestamp [CURRENT_TIMESTAMP] |
+| updated_at | timestamp [CURRENT_TIMESTAMP] |
+
+## 接口设计
