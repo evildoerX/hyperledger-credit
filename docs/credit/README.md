@@ -491,19 +491,19 @@ left to right direction
 
 ## 数据表设计
 
-### 经纪人违规表 agent_violation
+### 违规表 violation
 
 | 列                | 类型                          | 注释                                                                             |
 | ----------------- | ----------------------------- | -------------------------------------------------------------------------------- |
 | id                | int(11) 自动增量              |
 | appkey            | varchar(50) []                | appkey                                                                           |
 | channel           | int(11) [0]                   | channelID                                                                        |
-| agentAccountID    | varchar(64)                   | 经纪人 id                                                                        |
-| certificateNumber | varchar(50)                   | 身份证号                                                                         |
-| name              | varchar(50)                   | 用户名                                                                           |
+| type              | tinyint(4) [2]                | 违规主体类型：1，经纪人，2 经纪公司                                              |
+| subjectID         | varchar(64)                   | 违规主体 id                                                                      |
+| certificateNumber | varchar(50)                   | 经纪人：身份证号 ，经纪公司：组织机构代码                                        |
+| name              | varchar(50)                   | 紧急人名称 或 经纪公司名称                                                       |
 | status            | tinyint(4) [2]                | 记录状态 1：待审核 2：审核通过 3：审核不通过添加其他违规 4：审核不通过撤销违规   |
 | from              | tinyint(4) [1]                | 1：公司；2：区交易中心；3：区房管局；4：公安；5：工商（默认公司）；6：消费者投诉 |
-| orgID             | varchar(64)                   | 经纪公司 ID                                                                      |
 | txID              | varchar(100)                  | 链上插入成功返回的交易编号（调用链接口返回的参数                                 |
 | violationDate     | datetime                      | 违规日期                                                                         |
 | violationType     | int(11)                       | 违规类型，关联违规类型表的 id                                                    |
@@ -700,6 +700,9 @@ left to right direction
 | channel      | int(11) [0]                   | channelID    |
 | created_at   | timestamp [CURRENT_TIMESTAMP] |
 | updated_at   | timestamp [CURRENT_TIMESTAMP] |
+
+### 链数据表
+#### 违规表 
 
 ### 信息公告表 issue
 
