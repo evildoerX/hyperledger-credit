@@ -534,7 +534,6 @@ left to right direction
 | complainantAccountID | varchar(50) []   | 投诉人 accountID                                                                                                                                   |
 | complainantName      | varchar(50) []   | 投诉人名称                                                                                                                                         |
 | complainantsubOrgKey | varchar(50) []   | 投诉人所属机构                                                                                                                                     |
-| complainantTime      | timestamp        | 投诉时间                                                                                                                                           |
 | complainantDesc      | varchar(50) []   | 投诉内容                                                                                                                                           |
 | complainantMaterial  | text             | 投诉附件                                                                                                                                           |
 | complainantIp        | varchar(50) []   | 投诉人 ip                                                                                                                                          |
@@ -544,9 +543,8 @@ left to right direction
 | respondentOrgName    | varchar(50) []   | 被投诉人所属机构名称(当投诉的机构不在协会注册时使用 )                                                                                              |
 | respondentTel        | varchar(50) []   | 被投诉人联系方式                                                                                                                                   |
 | status               | tinyint(4) [1]   | 投诉处理状态 1：未处理 2：受理 3：驳回 4：admin 推给 HR（待转发） 5：HR 推还给 admin（处理中）6：HR 处理中 7：待审核，8：已处理 流程 1→4→6→5→2 / 3 |
-| processPics          | text             | 管理员 处理图片                                                                                                                                    |
-| processResult        | text             | 管理员 处理描述                                                                                                                                    |
-
+| processInfo          | text             | 管理员处理内容                                                                                                                                  |
+| created_at        | timestamp [CURRENT_TIMESTAMP] |投诉时间|
 ### 申诉 violation_appeal
 
 | 列                | 类型                          | 注释                                                   |
