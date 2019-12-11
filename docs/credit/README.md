@@ -652,24 +652,54 @@ left to right direction
 ![](./imgs/e-r.png)
 
 
-## 数据表设计
-### 投诉表 complaint
+## 信息表
+### 投诉
+投诉（appkey，channel，投诉编号，投诉类型，投诉主体ID，投诉主体联系方式，投诉主体IP，投诉内容，投诉附件，被投诉主体ID，被投诉主体名称，被投诉主体身份ID，被投诉主体联系方式，处理状态，投诉来源，链上txID，投诉时间）
 
-| 列                   | 类型                          | 注释                                                                                                                                               |
-| -------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| id                   | int(11) 自动增量              |                                                                                                                                                    |
-| appkey               | varchar(50) []                |                                                                                                                                                    |
-| channel              | int(11) [0]                   |                                                                                                                                                    |
-| type                 | varchar(50) []                | 投诉类型：1:用户对经纪人投诉 ,2:经纪公司对经纪公司投诉, 3:用户对经纪人信访，4：用户对经纪公司信访                                                  |
-| complainantAccountID | varchar(50) []                | 投诉人 accountID                                                                                                                                   |
-| complainantIp        | varchar(50) []                | 投诉人 ip                                                                                                                                          |
-| complainantTel       | varchar(50) []                | 投诉人联系方式                                                                                                                                     |
-| complainantDesc      | varchar(50) []                | 投诉内容                                                                                                                                           |
-| complainantMaterial  | text                          | 投诉附件                                                                                                                                           |
-| respondentSubjectId  | varchar(50) []                | 被投诉主体ID                                                                                                                                 |
-| respondentIdentityID    | varchar(50) []                | 被投诉主体身份ID                                                                                            |
-| respondentTel        | varchar(50) []                | 被投诉人联系方式                                                                                                                                   |
-| status               | tinyint(4) [1]                | 投诉处理状态 1：未处理 2：受理 3：驳回 4：admin 推给 HR（待转发） 5：HR 推还给 admin（处理中）6：HR 处理中 7：待审核，8：已处理 流程 1→4→6→5→2 / 3 |
-| processInfo          | text                          | 管理员处理内容                                                                                                                                     |
-| txID          | text                          | 链上交易id                                                                                                                                     |
-| created_at           | timestamp [CURRENT_TIMESTAMP] | 投诉时间                                                                                                                                           |
+### 投诉消息
+
+投诉消息（appkey，channel，投诉消息ID，消息类型，消息状态，发送方，接收方，原CaseID，消息处理类型，消息处理内容，经办人 ）
+
+### 上岗证申请单
+
+上岗证申请单（appkey，channel，accountID，申请人姓名，申请人工号，申请人身份证号，申请状态，很轻人手机号，申请类型，原因，附件）
+
+### 上岗证
+上岗证（appkey，channel，accountID，姓名，所属机构，状态，附件，身份证号，手机号，职位，生效时间，失效时间，生成图片定时任务）
+
+### 上岗证云文件
+上岗证云文件（appkey，channel，文件id，文件名称，文件发送类型，文件附件url，下载时间，下载次数）
+
+### 投诉摘要
+投诉摘要（appkey，channel，accountID，原CaseID，协会处理摘要，公司处理摘要，申诉摘要）
+
+### 服务评价
+服务评价（appkey，channel，accountID，姓名，头像消费者id，专业度评价，服务满意度评价，仪表着装评价，评价时间，客户端Ip）
+
+### 职业资格证
+职业资格证（appkey，channel，accountId，姓名，身份证号，证书编号，证书类型，证书附件，状态）
+
+### 从业经历
+从业经历（appkey，channel，经纪公司id，经纪公司名称，入职时间，入职职位，主要工作内容，离职时间，离职职位，离职原因，txid）
+
+### 公司
+公司（appkey，channel，经纪公司名称，法定代表人，经营范围，成立日期，企业地址，公司实际负责人，联系电话，公司实际办公地址，发照日期，营业期限，经营状态，公司类型，统一社会信用代码，所属行业，注册资本,登记机关）
+
+### 员工
+员工（ appkey，channel，accountID，姓名，头像 ，性别，生日，身份证号 ，户口所在地，地址，简介，工号（公司工号））
+
+### 职位
+职位（appkey，channel，职位ID，职位名称，职位说明，职位权限点）
+
+### 链码
+链码（appkey，channel，链码名称，调用地址，查询地址）
+
+### 链机构
+链机构（appkey，channel，链机构名称，链机构ID，链机构域名，链机构SDK访问地址）
+
+### 商品
+商品（appkey，channel，商品ID）
+
+### 订单
+订单（appkey，channel，accountID，订单ID，订单关联云文件，订单关联机构）
+）
