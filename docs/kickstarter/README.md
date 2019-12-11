@@ -21,6 +21,7 @@ left to right direction
 (众筹商品管理) ..> (查看众筹商品详情): <<include>>
 (众筹商品管理) ..> (发布众筹商品): <<include>>
 (众筹商品管理) ..> (审核众筹商品): <<include>>
+(众筹商品管理) ..> (搜索众筹商品): <<include>>
 (众筹商品管理) ..> (众筹商品SKU管理): <<include>>
 (众筹商品SKU管理) ..> (添加众筹商品SKU): <<include>>
 (众筹商品SKU管理) ..> (编辑众筹商品SKU): <<include>>
