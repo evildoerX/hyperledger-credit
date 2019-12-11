@@ -57,6 +57,7 @@ module.exports = ctx => ({
     sidebar: {
       "/guide/": getGuideSidebar("指南", "深入"),
       "/credit/": getSidebar(),
+      "/kickstarter/":getSidebar(),
     }
   },
   plugins: [
