@@ -3,10 +3,10 @@ module.exports = [
     text: '房产信用',
     link: '/credit/',
   },
-  {
-    text: 'kickstarter',
-    link: '/kickstarter/',
-  },
+  // {
+  //   text: 'kickstarter',
+  //   link: '/kickstarter/',
+  // },
   // {
   //   text: '中台DID服务',
   //   link: '/didserver/',
