@@ -369,6 +369,29 @@
 | created_at | timestamp [CURRENT_TIMESTAMP] |
 | updated_at | timestamp [CURRENT_TIMESTAMP] |
 
+
+### 链表 - 违规表
+
+| 列         | 类型                          | 注释      |
+| ---------- | ----------------------------- | --------- |
+| id         | int(11) 自动增量              |
+| appkey     | varchar(50) []                | appkey    |
+| channel    | int(11) [0]                   | channelID |
+| chainOrgID | int(11)                       | 机构 ID   |
+| created_at | timestamp [CURRENT_TIMESTAMP] |
+| updated_at | timestamp [CURRENT_TIMESTAMP] |
+
+### 链表 - 从业记录表
+
+| 列         | 类型                          | 注释      |
+| ---------- | ----------------------------- | --------- |
+| id         | int(11) 自动增量              |
+| appkey     | varchar(50) []                | appkey    |
+| channel    | int(11) [0]                   | channelID |
+| chainOrgID | int(11)                       | 机构 ID   |
+| created_at | timestamp [CURRENT_TIMESTAMP] |
+| updated_at | timestamp [CURRENT_TIMESTAMP] |
+
 ## 接口设计
 
 ### 1.1 添加/更新经纪人（编辑经纪人信息跟新增分开处理，详见 1.57）
