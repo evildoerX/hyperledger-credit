@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/evildoerX/did-docs#readme",
   "devDependencies": {
-    "shelljs": "^0.8.3",
+    "shelljs": "^0.8.5",
     "@vuepress/plugin-back-to-top": "^1.0.1",
     "@vuepress/plugin-google-analytics": "^1.0.1",
     "@vuepress/plugin-medium-zoom": "^1.0.1",
